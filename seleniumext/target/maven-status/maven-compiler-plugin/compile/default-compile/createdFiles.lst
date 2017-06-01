@@ -1,3 +1,3 @@
-com\zillionfortune\seleniumext\DriverFactory.class
-com\zillionfortune\seleniumext\WaitConditions.class
-com\zillionfortune\seleniumext\WindowObjects.class
+com\jackie\seleniumext\DriverFactory.class
+com\jackie\seleniumext\WaitConditions.class
+com\jackie\seleniumext\WindowObjects.class
