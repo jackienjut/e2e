@@ -13,7 +13,7 @@
     <bytecodeTargetLevel>
       <module name="bi" target="1.5" />
       <module name="e2e" target="1.5" />
-      <module name="seleniumext" target="1.5" />
+      <module name="seleniumext" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>
