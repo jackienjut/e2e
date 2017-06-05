@@ -6,4 +6,4 @@ Feature: User login in to zmcredit page
     Given user input username "kfzy01"
     Given user input password "aa1111"
     When user click the button login
-    Then user login in the zmcredit system as ""
+    Then user login in the zmcredit system as "客服专员"

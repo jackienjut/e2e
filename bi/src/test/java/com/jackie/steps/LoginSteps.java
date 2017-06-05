@@ -30,7 +30,7 @@ public class LoginSteps {
 
     @Then("^user login in the zmcredit system as \"([^\"]*)\"$")
     public void userLoginInTheZmcreditSystemAs(String username) throws Throwable {
-
+        loginPage.checkUserName(username);
     }
 
     @When("^user click the button login$")

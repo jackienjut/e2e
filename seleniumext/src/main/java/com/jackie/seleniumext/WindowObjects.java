@@ -3,6 +3,7 @@ package com.jackie.seleniumext;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -17,8 +18,11 @@ public class WindowObjects {
     private static WebDriverWait wait;
 
     public WindowObjects() {
-        driver = DriverFactory.getChromeDriver();
-        wait = new WebDriverWait(driver, 10);
+        if (null == driver) {
+            driver = DriverFactory.getChromeDriver();
+            wait = new WebDriverWait(driver, 10);
+            PageFactory.initElements(driver ,this);
+        }
     }
 
     public void loadPage(String url) {
@@ -81,6 +85,31 @@ public class WindowObjects {
         action.apply();
     }
 
+    public void select(final WebElement element, final String text, final ExpectedCondition... conditions) {
+        SafeAction action = new SafeAction() {
+            @Override
+            public void apply() {
+                for (int i = 0; i < TRY_TIMES; i++) {
+                    try {
+                        until(element);
+                        element.sendKeys(text);
+                        for (ExpectedCondition condition : conditions) {
+                            wait.until(condition);
+                        }
+                        break;
+                    } catch (Throwable e) {
+                        try {
+                            Thread.sleep(WAIT_SECONDS);
+                        } catch (InterruptedException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                }
+            }
+        };
+        action.apply();
+    }
+
 
     public static void main(String[] args) {
 
@@ -96,13 +125,13 @@ public class WindowObjects {
     }
 
 
-    private void until(String xpath) {
+    protected void until(String xpath) {
         new WebDriverWait(driver, 10).until(
                 ExpectedConditions.presenceOfElementLocated(By.xpath(xpath))
         );
     }
 
-    private void until(final WebElement element) {
+    protected void until(final WebElement element) {
         wait.until(new ExpectedCondition<WebElement>() {
             @Override
             public WebElement apply(WebDriver driver) {
@@ -110,5 +139,13 @@ public class WindowObjects {
             }
         });
 
+    }
+
+    protected void sleep(){
+        try {
+            Thread.sleep(WAIT_SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

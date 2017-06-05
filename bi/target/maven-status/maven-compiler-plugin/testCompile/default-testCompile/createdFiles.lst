@@ -1,2 +1,9 @@
+com\jackie\pages\LoginPage.class
+com\jackie\pages\CommonPage.class
+com\jackie\pages\CustomerPage.class
+com\jackie\steps\CommonSteps.class
+com\jackie\steps\CustomerSteps.class
+com\jackie\TT.class
+com\jackie\StoryTest.class
+com\jackie\steps\LoginSteps.class
 com\jackie\steps\TestCaseSteps.class
-com\jackie\stories\StoryTest.class
